@@ -1,5 +1,5 @@
 $:.unshift(File.dirname(__FILE__))
 
-require 'reflex/configuration'
+require 'lib/reflex'
 
 $:.shift
