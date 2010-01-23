@@ -39,5 +39,23 @@ describe Reflex::Configuration do
     it "should have a path" do
       @configuration.path.should == "/XmlRpc/"
     end
+    
+    describe "URL changes" do
+      before(:each) do
+        Reflex.configure(:url => "http://www.example.com/API/")
+      end
+      
+      it "should have a changed URL" do
+        @configuration.url.should == "http://www.example.com/API/"
+      end
+      
+      it "should have a changed hostname" do
+        @configuration.hostname.should == "www.example.com"
+      end
+      
+      it "should have a changed path" do
+        @configuration.path.should == "/API/"
+      end
+    end
   end
 end
