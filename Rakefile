@@ -10,7 +10,10 @@ begin
     gem.email = "tomeric@i76.nl"
     gem.homepage = "http://github.com/i76/reflex"
     gem.authors = ["Tom-Eric Gerritsen"]
+    gem.add_development_dependency "mocha", ">= 0.9.8"
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "fakeweb", ">= 1.2.8"
+    gem.add_development_dependency "mime-types", ">= 1.16"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
