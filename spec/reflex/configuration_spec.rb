@@ -50,7 +50,7 @@ describe Reflex::Configuration do
       end
       
       it "should have a changed URL" do
-        @configuration.url.should == "http://www.example.com/API/"
+        @configuration.url.should == "http://www.example.com:8080/API/"
       end
       
       it "should have a changed hostname" do
