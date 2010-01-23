@@ -1,5 +1,5 @@
-$:.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'reflex/configuration'
 
-$:.shift
+$LOAD_PATH.shift
