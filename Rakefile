@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "reflex"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "ik@tom-eric.info"
+    gem.summary = %Q{Reflex connects your app to the React Social API}
+    gem.description = %Q{Reflex is a gem that allows you to connect your application to the React Social API}
+    gem.email = "tomeric@i76.nl"
     gem.homepage = "http://github.com/i76/reflex"
-    gem.authors = ["Tom-Eric"]
+    gem.authors = ["Tom-Eric Gerritsen"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
