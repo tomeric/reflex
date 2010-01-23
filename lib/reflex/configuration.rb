@@ -19,6 +19,10 @@ module Reflex
     def path
       uri.path
     end
+    
+    def port
+      uri.port || 80
+    end
   end
   
   def self.configure(options = {})

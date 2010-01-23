@@ -40,9 +40,13 @@ describe Reflex::Configuration do
       @configuration.path.should == "/XmlRpc/"
     end
     
+    it "should have a port" do
+      @configuration.port.should == 80
+    end
+    
     describe "URL changes" do
       before(:each) do
-        Reflex.configure(:url => "http://www.example.com/API/")
+        Reflex.configure(:url => "http://www.example.com:8080/API/")
       end
       
       it "should have a changed URL" do
@@ -55,6 +59,10 @@ describe Reflex::Configuration do
       
       it "should have a changed path" do
         @configuration.path.should == "/API/"
+      end
+      
+      it "should have a changed port" do
+        
       end
     end
   end
