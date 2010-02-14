@@ -46,3 +46,60 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+namespace :reflex do
+  desc "Configure reflex"
+  task :config do
+    require 'lib/reflex'
+    
+    config_file = File.join(File.dirname(__FILE__), 'spec', 'reflex.yml')    
+    
+    if File.exists?(config_file)
+      settings = YAML.load(File.open(config_file))
+      configuration = settings.inject({}) do |options, (key, value)|
+                        options[(key.to_sym rescue key) || key] = value
+                        options
+                      end
+
+      Reflex.configure(configuration)
+    else
+      puts "** [Reflex] #{config_file} does not exist, skipping Reflex configuration"
+    end
+  end
+  
+  desc "List methods that have not yet been added to the library, but are available"
+  task :missing_methods do
+    Rake::Task['reflex:config'].invoke
+    
+    def class_exists? kls
+      begin
+        kls = constantize(kls)
+        kls.kind_of? Class
+      rescue Exception
+        false
+      end
+    end
+    
+    def constantize(kls)
+      Object.module_eval("::#{kls}", __FILE__, __LINE__)      
+    end
+    
+    all_methods = Reflex::System.list_methods
+    all_methods.each do |method|
+      remote_class, camel_cased_method = method.split('.')
+      local_class  = "Reflex::#{remote_class}"
+      local_method = camel_cased_method.gsub(/::/, '/').gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').gsub(/([a-z\d])([A-Z])/,'\1_\2').tr("-", "_").downcase.to_sym
+      
+      class_exists  = class_exists?(local_class)
+      method_exists = class_exists && constantize(local_class).respond_to?(local_method)
+      
+      unless class_exists && method_exists
+        method_description = Reflex::System.method_description(method)
+        parameters  = method_description['parameters'].map { |name, doc| "(#{doc['type']}) #{name} : #{doc['description']}" }.join("\n             ")
+        description = method_description['method']['description']
+        
+        puts "\n             == #{method} ==\n      Local: #{local_class}.#{local_method}\n Parameters: #{parameters}\nDescription: #{description}\n"
+      end
+    end
+  end
+end
