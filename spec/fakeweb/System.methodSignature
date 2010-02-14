@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<methodResponse><params><param><value><array><data><value><string>string</string></value></data></array></value></param></params></methodResponse>

@@ -1,6 +1,8 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..') + '/spec_helper')
 
 describe Reflex::Configuration do
+  include ReflexSpecHelper
+  
   before(:each) do
     @configuration = Reflex::Configuration.instance
   end
@@ -62,7 +64,7 @@ describe Reflex::Configuration do
       end
       
       it "should have a changed port" do
-        
+        @configuration.port.should == 8080
       end
     end
   end

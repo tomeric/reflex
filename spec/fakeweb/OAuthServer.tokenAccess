@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml
+
+<methodResponse><params><param><value><struct><member><name>applicationUserId</name><value><string>1</string></value></member><member><name>connectedWithProvider</name><value><string>Twitter</string></value></member><member><name>reactOAuthSession</name><value><string>FILTERED</string></value></member></struct></value></param></params></methodResponse>
