@@ -32,11 +32,13 @@ module Reflex
             attr_accessor :creating_for_react
 
             def self.find_by_react_user_id(react_id)
-              find(react_id)
+              find_by_id(react_id)
             end
             
             def self.create_for_react(react_profile)
-              create!(:react_profile => react_profile, :creating_for_react => true)
+              record = new(:react_profile => react_profile, :creating_for_react => true)
+              record.save_without_session_maintenance
+              record
             end
           EOD
         end

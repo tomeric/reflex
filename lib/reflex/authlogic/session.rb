@@ -41,28 +41,42 @@ module Reflex
         controller.redirect_to(result['redirectUrl'])
       end
 
-      def authenticate_oauth_session
+      def authenticate_oauth_session(allow_retry = true)
         # Request the React Session
-        oauth_session = Reflex::OAuthServer.token_access(controller.params)
+        oauth_session  = Reflex::OAuthServer.token_access(controller.params)
+        react_provider = oauth_session['connectedWithProvider']
+        react_user_id  = oauth_session['applicationUserId']
     
-        if oauth_session['applicationUserId']
+        if react_user_id
           # User is known on React's side, so find it:
-          self.attempted_record = klass.send(:find_by_react_user_id, oauth_session['applicationUserId'])
-        end
-      
-        unless attempted_record
-          react_profile = Reflex::OAuthServer.session_get_profile(react_oauth_session)
+          self.attempted_record = klass.send(:find_by_react_user_id, react_user_id)
 
-          # User is not yet known on React's side, so create it:
-          self.attempted_record = klass.create_for_react(react_profile)       
-          react_user_id = attempted_record.id # react_user_id
-      
-          # Set the user id on react's side:
-          Reflex::OAuthServer.token_set_user_id(react_user_id, react_oauth_session)
-        end
+          unless attempted_record
+            # applicationUserId is not longer valid, so remove it's provider remotely:
+            Reflex::OAuthServer.user_remove_provider(react_user_id, react_provider)
+            
+            # Retry authorization can be retried:
+            errors.add_to_base(:react_auth_retry)
+          end
         
-        if !attempted_record || attempted_record.new_record?
-          errors.add_to_base(:react_auth_failed)
+        else
+          # User is not yet known on React's side, so create it:
+          react_profile = Reflex::OAuthServer.session_get_profile(react_oauth_session)
+          self.attempted_record = klass.create_for_react(react_profile) 
+          
+          if !attempted_record.new_record?
+            react_user_id = attempted_record.id # react_user_id
+      
+            # Set the user id on react's side:
+            Reflex::OAuthServer.token_set_user_id(react_user_id, react_oauth_session)
+          else
+            # Something must have gone wrong
+            errors.add_to_base(:react_auth_failed) 
+            
+            return false
+          end
+          
+          true
         end
       end
   
