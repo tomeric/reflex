@@ -2,6 +2,118 @@
 
 Reflex is a gem that allows you to connect your application to the React Social API
 
+== Install / Usage
+
+=== 1. Install Authlogic and setup your application
+
+* Authlogic: http://github.com/binarylogic/authlogic
+* Authlogic Example: http://github.com/binarylogic/authlogic_example
+
+=== 2. Install Reflex
+
+*WARNING!* Because the reflex gem is not yet available, the notes below are incorrect. For now, 
+simply install reflex as a rails plugin and _don't_ add it in your environment.rb or Gemfile:
+
+  $ script/plugin install git@github.com:i76/reflex.git
+
+Add the gem dependencies in your config:
+
+==== Rails 2.3
+
+Add the dependencies to your environment:
+  
+  # config/environment.rb
+  config.gem "reflex"
+
+And install them:
+
+  $ rake gems:install
+
+==== Rails 3.0
+
+Add the dependencies to your Gemfile
+
+  # Gemfile
+  gem "reflex"
+  
+And install them:
+
+  $ bundle install
+  $ bundle pack
+
+=== 3. Configure the reflex gem
+
+Create a reflex configuration file:
+
+  # config/reflex.yml
+  development: &DEFAULTS
+    username: username
+    password: password
+    url: http://social.react.com/XmlRpc/
+  
+  production:
+    << DEFAULTS
+  
+  test:
+    << DEFAULTS
+  
+=== 3. Make sure you save your objects properly
+
+Save your session objects with a block. Why? Because we need to redirect the user to their login provider so that they can authenticate. When we do this, we don't want to execute that block of code, because if we do, we will get a DoubleRender error. Using a block allows us to skip that entire block and send the user along their way if they choose to authenticate via React's OAuth Server.
+
+You probably want to do this in your controllers. It should look something like this:
+
+  # app/controllers/user_session_controller.rb
+  def create
+    @user_session.save do |result|
+      if result
+        flash[:notice] = "Login successful!"
+        redirect_back_or_default account_url
+      else
+        render :action => :new
+      end
+    end
+  end
+
+=== 4. Add providers to your login form
+
+Add providers to your login form:
+
+  # app/views/new.html.erb
+  <h1>Log in</h1>
+  <% form_for(@user_session) do |f| %>
+    <%= f.error_messages %>
+    <h2>Log in with your account</h2>
+    <p>
+      <%= f.label :login %>
+      <br>
+      <%= f.text_field :login %>
+    </p>
+    <p>
+      <%= f.label :password %>
+      <br>
+      <%= f.password_field :password %>
+    </p>
+    <p><%= f.submit "Login" %></p>
+    
+    <h2>Or log in via:</h2>
+    <% Reflex::OAuthServer.get_providers.each do |provider| %>
+      <%= f.submit provider, :name => "react_provider" %>
+      <br>
+    <% end %>
+  <% end %>
+
+== Roadmap
+
+The reflex gem is far from finished. Here are some of the upcoming features:
+
+1. Connect an existing account to multiple providers — Allow a registered user
+   (be it via traditional registration, or via social login) to connect his
+   account to other social providers.
+2. Easily access the React API — If a user connected to, for example twitter,
+   then it should be a matter of calling:
+   `@user.twitter.update_status("I've connected my Twitter profile")`
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
