@@ -49,7 +49,7 @@ Create a reflex configuration file:
   development: &DEFAULTS
     username: username
     password: password
-    url: http://social.react.com/XmlRpc/
+    url: http://social.react.com/XmlRpc_v1/
   
   production:
     << DEFAULTS

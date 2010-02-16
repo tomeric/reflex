@@ -5,7 +5,7 @@ describe Reflex::OAuthServer do
   include ReflexSpecHelper
 
   before(:all) do
-    Reflex.configure(:url => "http://social.react.com/XmlRpc/")
+    Reflex.configure(:url => "http://social.react.com/XmlRpc_v1/")
     FakeWeb.allow_net_connect = false
     FakeWeb.clean_registry
     
@@ -15,7 +15,7 @@ describe Reflex::OAuthServer do
 
   describe "get_providers" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc/", :response => fake_response("OAuthServer.getProviders"))      
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("OAuthServer.getProviders"))      
     end
     
     it "should call OAuthServer.getProviders with credentials" do
@@ -34,7 +34,7 @@ describe Reflex::OAuthServer do
   
   describe "token_request" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc/", :response => fake_response("OAuthServer.tokenRequest"))      
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("OAuthServer.tokenRequest"))      
     end
     
     it "should call OAuthServer.tokenRequest with credentials and provider" do
@@ -59,7 +59,7 @@ describe Reflex::OAuthServer do
   
   describe "token_access" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc/", :response => fake_response("OAuthServer.tokenAccess"))      
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("OAuthServer.tokenAccess"))      
     end
     
     it "should call OAuthServer.tokenAccess with credentials and parameters" do

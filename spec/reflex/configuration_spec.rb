@@ -19,7 +19,7 @@ describe Reflex::Configuration do
   
   describe "Reflex#configure" do
     before(:each) do
-      Reflex.configure(:username => "user", :password => "password", :url => "http://social.react.com/XmlRpc/")
+      Reflex.configure(:username => "user", :password => "password", :url => "http://social.react.com/XmlRpc_v1/")
     end
     
     it "should have a username" do
@@ -31,7 +31,7 @@ describe Reflex::Configuration do
     end
     
     it "should have a URL" do
-      @configuration.url.should == "http://social.react.com/XmlRpc/"
+      @configuration.url.should == "http://social.react.com/XmlRpc_v1/"
     end
     
     it "should have a hostname" do
