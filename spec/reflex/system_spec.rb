@@ -5,7 +5,7 @@ describe Reflex::System do
   include ReflexSpecHelper
   
   before(:all) do
-    Reflex.configure(:url => "http://social.react.com/XmlRpc_v1/")
+    Reflex.configure(:endpoint => "http://social.react.com/XmlRpc_v1/")
     FakeWeb.allow_net_connect = false
     FakeWeb.clean_registry
   end

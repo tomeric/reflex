@@ -19,12 +19,15 @@ module Reflex
       client.call(function, *arguments)
     end
     
-    def self.username
-      Configuration.instance.username
+    def self.oauth_call(function, *arguments)
     end
     
-    def self.password
-      Configuration.instance.password
+    def self.key
+      Configuration.instance.key
+    end
+    
+    def self.secret
+      Configuration.instance.secret
     end
   end
   

@@ -50,6 +50,7 @@ end
 namespace :reflex do
   desc "Configure reflex"
   task :config do
+    require 'yaml'
     require 'lib/reflex'
     
     config_file = File.join(File.dirname(__FILE__), 'spec', 'reflex.yml')    

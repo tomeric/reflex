@@ -19,19 +19,19 @@ describe Reflex::Configuration do
   
   describe "Reflex#configure" do
     before(:each) do
-      Reflex.configure(:username => "user", :password => "password", :url => "http://social.react.com/XmlRpc_v1/")
+      Reflex.configure(:key => "key", :secret => "secret", :endpoint => "http://social.react.com/XmlRpc_v1/")
     end
     
-    it "should have a username" do
-      @configuration.username.should == "user"
+    it "should have a key" do
+      @configuration.key.should == "key"
     end
     
-    it "should have a password" do
-      @configuration.password.should == "password"
+    it "should have a secret" do
+      @configuration.secret.should == "secret"
     end
     
-    it "should have a URL" do
-      @configuration.url.should == "http://social.react.com/XmlRpc_v1/"
+    it "should have an endpoint" do
+      @configuration.endpoint.should == "http://social.react.com/XmlRpc_v1/"
     end
     
     it "should have a hostname" do
@@ -39,20 +39,20 @@ describe Reflex::Configuration do
     end
     
     it "should have a path" do
-      @configuration.path.should == "/XmlRpc/"
+      @configuration.path.should == "/XmlRpc_v1/"
     end
     
     it "should have a port" do
       @configuration.port.should == 80
     end
     
-    describe "URL changes" do
+    describe "endpoint changes" do
       before(:each) do
-        Reflex.configure(:url => "http://www.example.com:8080/API/")
+        Reflex.configure(:endpoint => "http://www.example.com:8080/API/")
       end
       
       it "should have a changed URL" do
-        @configuration.url.should == "http://www.example.com:8080/API/"
+        @configuration.endpoint.should == "http://www.example.com:8080/API/"
       end
       
       it "should have a changed hostname" do

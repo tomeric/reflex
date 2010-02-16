@@ -5,10 +5,10 @@ module Reflex
   class Configuration
     include ::Singleton
 
-    attr_accessor :username, :password, :url
+    attr_accessor :key, :secret, :endpoint
     
     def uri
-      @uri = URI.parse(url) if @uri.nil? || @uri.to_s != url
+      @uri = URI.parse(endpoint) if @uri.nil? || @uri.to_s != endpoint
       @uri
     end
     
@@ -26,7 +26,7 @@ module Reflex
   end
   
   def self.configure(options = {})
-    validate_valid_options!(options, :username, :password, :url)
+    validate_valid_options!(options, :key, :secret, :endpoint)
     
     authorization = Configuration.instance
     options.each do |key, value|

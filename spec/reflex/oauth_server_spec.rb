@@ -5,12 +5,9 @@ describe Reflex::OAuthServer do
   include ReflexSpecHelper
 
   before(:all) do
-    Reflex.configure(:url => "http://social.react.com/XmlRpc_v1/")
+    Reflex.configure(:endpoint => "http://social.react.com/XmlRpc_v1/")
     FakeWeb.allow_net_connect = false
     FakeWeb.clean_registry
-    
-    @username = Reflex::Configuration.instance.username
-    @password = Reflex::Configuration.instance.password
   end
 
   describe "get_providers" do
@@ -19,7 +16,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.getProviders with credentials" do
-      Reflex::OAuthServer.expects(:call).with("OAuthServer.getProviders", @username, @password)     
+      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.getProviders")     
       Reflex::OAuthServer.get_providers
     end
     
@@ -38,7 +35,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.tokenRequest with credentials and provider" do
-      Reflex::OAuthServer.expects(:call).with("OAuthServer.tokenRequest", @username, @password, 'Twitter')     
+      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.tokenRequest", 'Twitter')     
       Reflex::OAuthServer.token_request('Twitter')
     end
     
@@ -63,7 +60,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.tokenAccess with credentials and parameters" do
-      Reflex::OAuthServer.expects(:call).with("OAuthServer.tokenAccess", @username, @password, { "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })     
+      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.tokenAccess", { "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })     
       Reflex::OAuthServer.token_access({ "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })
     end
     
