@@ -1,3 +1,4 @@
+require 'oauth'
 require 'xmlrpc/client'
 
 # unfortunately react's oauth server has <nil />'s, which the ruby XMLRPC
@@ -13,6 +14,10 @@ end
 
 module Reflex
   class Base
+    def self.oauth_consumer
+      @@consumer ||= OAuth::Consumer.new(config.key, config.secret, :site => config.endpoint)
+    end
+    
     def self.call(function, *arguments)
       config = Configuration.instance
       client = XMLRPC::Client.new(config.hostname, config.path, config.port)

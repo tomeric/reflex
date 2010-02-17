@@ -19,7 +19,7 @@ describe Reflex::Configuration do
   
   describe "Reflex#configure" do
     before(:each) do
-      Reflex.configure(:key => "key", :secret => "secret", :endpoint => "http://social.react.com/XmlRpc_v1/")
+      Reflex.configure(:key => "key", :secret => "secret", :endpoint => "http://social.react.com/XmlRpc_v2/")
     end
     
     it "should have a key" do
@@ -31,7 +31,7 @@ describe Reflex::Configuration do
     end
     
     it "should have an endpoint" do
-      @configuration.endpoint.should == "http://social.react.com/XmlRpc_v1/"
+      @configuration.endpoint.should == "http://social.react.com/XmlRpc_v2/"
     end
     
     it "should have a hostname" do
@@ -39,7 +39,7 @@ describe Reflex::Configuration do
     end
     
     it "should have a path" do
-      @configuration.path.should == "/XmlRpc_v1/"
+      @configuration.path.should == "/XmlRpc_v2/"
     end
     
     it "should have a port" do

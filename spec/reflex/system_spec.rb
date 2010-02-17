@@ -5,14 +5,14 @@ describe Reflex::System do
   include ReflexSpecHelper
   
   before(:all) do
-    Reflex.configure(:endpoint => "http://social.react.com/XmlRpc_v1/")
+    Reflex.configure(:endpoint => "http://social.react.com/XmlRpc_v2/")
     FakeWeb.allow_net_connect = false
     FakeWeb.clean_registry
   end
   
   describe "list_methods" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("System.listMethods"))   
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v2/", :response => fake_response("System.listMethods"))   
     end
     
     it "should call System.listMethods" do
@@ -31,7 +31,7 @@ describe Reflex::System do
   
   describe "method_signature" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("System.methodSignature"))   
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v2/", :response => fake_response("System.methodSignature"))   
     end
     
     it "should call System.methodSignature" do
@@ -50,7 +50,7 @@ describe Reflex::System do
 
   describe "method_description" do
     before(:each) do
-      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v1/", :response => fake_response("System.methodDescription"))   
+      FakeWeb.register_uri(:post, "http://social.react.com/XmlRpc_v2/", :response => fake_response("System.methodDescription"))   
     end
     
     it "should call System.methodDescription" do
