@@ -2,4 +2,4 @@ HTTP/1.1 200 OK
 Content-Type: text/xml
 
 <?xml version="1.0" encoding="UTF-8"?>
-<methodResponse><params><param><value><struct><member><name>redirectUrl</name><value><string>https://twitter.com/oauth/authorize?oauth_token=FILTERED&amp;call!back=http%3A%2F%2Flocalhost%3A3000%2Fuser_sessions%3FReactOAuthSession%3DFILTERED</string></value></member><member><name>reactOAuthSession</name><value><string>FILTERED</string></value></member></struct></value></param></params></methodResponse>
+<methodResponse><params><param><value><struct><member><name>redirectUrl</name><value><string>https://twitter.com/oauth/authorize?oauth_token=FILTERED&amp;callback=http%3A%2F%2Flocalhost%3A3000%2Fuser_sessions%3FReactOAuthSession%3DFILTERED</string></value></member><member><name>reactOAuthSession</name><value><string>FILTERED</string></value></member></struct></value></param></params></methodResponse>
