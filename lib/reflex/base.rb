@@ -24,7 +24,10 @@ module Reflex
       client.call(function, *arguments)
     end
     
-    def self.oauth_call(function, *arguments)
+    def self.call!(function, *arguments)
+      config = Configuration.instance
+      client = XMLRPC::Client.new(config.hostname, config.path, config.port)
+      client.call(function, key, secret, *arguments)
     end
     
     def self.key

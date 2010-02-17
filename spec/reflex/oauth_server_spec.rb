@@ -16,7 +16,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.getProviders with credentials" do
-      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.getProviders")     
+      Reflex::OAuthServer.expects(:call!).with("OAuthServer.getProviders")     
       Reflex::OAuthServer.get_providers
     end
     
@@ -35,7 +35,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.tokenRequest with credentials and provider" do
-      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.tokenRequest", 'Twitter')     
+      Reflex::OAuthServer.expects(:call!).with("OAuthServer.tokenRequest", 'Twitter')     
       Reflex::OAuthServer.token_request('Twitter')
     end
     
@@ -60,7 +60,7 @@ describe Reflex::OAuthServer do
     end
     
     it "should call OAuthServer.tokenAccess with credentials and parameters" do
-      Reflex::OAuthServer.expects(:oauth_call).with("OAuthServer.tokenAccess", { "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })     
+      Reflex::OAuthServer.expects(:call!).with("OAuthServer.tokenAccess", { "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })     
       Reflex::OAuthServer.token_access({ "oauth_token" => "FILTERED", "oauth_verifier" => "FILTERED", "ReactOAuthSession" => "FILTERED" })
     end
     
