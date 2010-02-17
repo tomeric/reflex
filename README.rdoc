@@ -47,15 +47,14 @@ Create a reflex configuration file:
 
   # config/reflex.yml
   development: &DEFAULTS
-    username: username
-    password: password
-    url: http://social.react.com/XmlRpc_v2/
+    key: development_key
+    secret: development_secret
+    endpoint: http://social.react.com/XmlRpc_v2/
   
   production:
     << DEFAULTS
-  
-  test:
-    << DEFAULTS
+    key: production_key
+    secret: production_secret
   
 === 3. Make sure you save your objects properly
 
