@@ -15,21 +15,18 @@ end
 module Reflex
   class Base
     def self.call(function, *arguments)
-      config = Configuration.instance
       client = XMLRPC::Client.new(config.hostname, config.path, config.port)
       client.call(function, *arguments)
     end
     
     def self.call!(function, *arguments)
-      call(function, key, secret, *arguments)
+      call(function, config.key, config.secret, *arguments)
     end
     
-    def self.key
-      Configuration.instance.key
-    end
+    private
     
-    def self.secret
-      Configuration.instance.secret
+    def self.config
+      @@config ||= Configuration.instance
     end
   end
   
