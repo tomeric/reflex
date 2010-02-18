@@ -35,7 +35,7 @@ module Reflex
       # Returns a generic (same for all providers) list of profiledata
       # given a OAuthSession
       def session_get_profile(oauth_session)
-        oath_call("OAuthServer.sessionGetProfile", oauth_session)
+        call!("OAuthServer.sessionGetProfile", oauth_session)
       end
 
       # Returns a generic (same for all providers) list of profiledata

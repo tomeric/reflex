@@ -14,10 +14,6 @@ end
 
 module Reflex
   class Base
-    def self.oauth_consumer
-      @@consumer ||= OAuth::Consumer.new(config.key, config.secret, :site => config.endpoint)
-    end
-    
     def self.call(function, *arguments)
       config = Configuration.instance
       client = XMLRPC::Client.new(config.hostname, config.path, config.port)
@@ -25,9 +21,7 @@ module Reflex
     end
     
     def self.call!(function, *arguments)
-      config = Configuration.instance
-      client = XMLRPC::Client.new(config.hostname, config.path, config.port)
-      client.call(function, key, secret, *arguments)
+      call(function, key, secret, *arguments)
     end
     
     def self.key
