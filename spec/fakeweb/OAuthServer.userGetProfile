@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<methodResponse><params><param><value><struct><member><name>real_name</name><value><string>Barney Stinson</string></value></member><member><name>user_name</name><value><string>barney</string></value></member><member><name>profile_picture</name><value><string>http://awesome.com/barney.jpg</string></value></member></struct></value></param></params></methodResponse>

@@ -77,7 +77,7 @@ describe Reflex::System do
       Reflex::System.expects(:call).with("System.methodHelp", "System.methodHelp")
       Reflex::System.method_help("System.methodHelp")      
     end
-    
-    it "should return help"
+
+    # Rest of method_help seems broken
   end
 end

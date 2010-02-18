@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml
+
+<methodResponse><params><param><value><struct><member><name>connectedWithProviders</name><value><array><data><value><string>Facebook</string></value></data><data><value><string>Twitter</string></value></data></array></value></member></struct></value></param></params></methodResponse>
