@@ -36,7 +36,8 @@ module Reflex
             end
             
             def self.create_for_react(react_profile)
-              record = new(:react_profile => react_profile, :creating_for_react => true)
+              record = new(:creating_for_react => true)
+              record.react_profile = react_profile if record.respond_to?(:react_profile=)
               record.save_without_session_maintenance
               record
             end

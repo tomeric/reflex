@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fake Twitter OAuth</title>
+  </head>
+  <body>
+    <!-- Do a GET request, because our middleware should fake it into being a POST request -->
+    <form action="/user_sessions?ReactOAuthSession=FAKE_OAUTH_TOKEN" method="get">
+      <fieldset>
+        <input type="submit" value="Deny"  name="deny">
+        <input type="submit" value="Allow" name="allow">
+      </fieldset>
+    </form>
+  </body>
+</html>
