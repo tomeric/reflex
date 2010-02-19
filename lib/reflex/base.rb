@@ -1,4 +1,3 @@
-require 'oauth'
 require 'xmlrpc/client'
 
 # unfortunately react's oauth server has <nil />'s, which the ruby XMLRPC
