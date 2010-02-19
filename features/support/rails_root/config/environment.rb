@@ -7,7 +7,6 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.load_paths += Dir.glob(File.join(Rails.root, '..', '..', '..', '..'))
   config.gem 'authlogic'
   config.gem 'cucumber'
   config.gem 'test-unit',        :version => '= 1.2.3', :lib => false
@@ -24,5 +23,3 @@ Rails::Initializer.run do |config|
   config.action_controller.allow_forgery_protection    = false
   config.action_mailer.delivery_method = :test
 end
-
-require 'reflex/rails/init'
