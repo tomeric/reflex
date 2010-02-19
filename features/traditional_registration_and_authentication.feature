@@ -16,7 +16,7 @@ Feature: Traditional registration
     Then I should be on the users page
     And I should see "Barney Stinson"
   
-  Scenario: Authentication
+  Scenario: Logging in
     Given a registered user exists with login: "barney", password: "awesome"
     And I am on the homepage
     
@@ -27,4 +27,13 @@ Feature: Traditional registration
     
     Then I should be on the user page for "barney"
     And I should be logged in
+  
+  Scenario: Logging Out
+    Given a registered user exists with login: "barney", password: "awesome"
+    And I am logged in as "barney" with password "awesome"
+    And I am on the homepage
+    
+    When I follow "Logout"
+    Then I should be on the homepage
+    And I should be logged out
   
