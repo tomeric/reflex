@@ -1,0 +1,9 @@
+test:
+  adapter: sqlite3
+  database: db/cucumber.sqlite3
+  timeout: 5000
+
+development:
+  adapter: sqlite3
+  database: db/cucumber.sqlite3
+  timeout: 5000

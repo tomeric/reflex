@@ -1,0 +1,8 @@
+<h1>User overview</h1>
+<% if @users.present? %>
+  <ul>
+    <%= render @users %>
+  </ul>
+<% else %>
+  <p>No users found.</p>
+<% end %>

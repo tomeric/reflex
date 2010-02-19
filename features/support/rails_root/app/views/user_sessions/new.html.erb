@@ -1,0 +1,22 @@
+<h1>Log in</h1>
+<% form_for(@user_session, :html => { :class => "panes" }) do |f| %>
+  <div class="left">
+    <h2>Log in with your account</h2>
+    <p>
+      <%= f.label :login %>
+      <br>
+      <%= f.text_field :login %>
+    </p>
+    <p>
+      <%= f.label :password %>
+      <br>
+      <%= f.password_field :password %>
+    </p>
+    <p><%= f.submit "Login" %></p>
+  </div>
+  <div class="right">
+    <h2>Or log in via:</h2>
+    <%= f.submit 'Twitter',  :name => "react_provider" %><br>
+    <%= f.submit 'Facebook', :name => "react_provider" %>
+  </div>
+<% end %>
