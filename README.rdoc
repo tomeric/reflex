@@ -74,6 +74,17 @@ You probably want to do this in your controllers. It should look something like 
     end
   end
 
+When creating new users, react_profile is set if available. In order to make use of this, alter your user class like this:
+
+  # app/models/user.rb
+  class User < ActiveRecord::Base
+    acts_as_authentic
+    
+    def react_profile=(profile)
+      self.name = profile['real_name'] || profile['user_name']
+    end
+  end
+
 === 4. Add providers to your login form
 
 Add providers to your login form:
