@@ -14,6 +14,9 @@ module NavigationHelpers
     when /the users page/
       users_path
     
+    when /the user page for "([^"]+)"/
+      user_path(User.find_by_login($1))
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

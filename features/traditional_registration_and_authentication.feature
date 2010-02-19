@@ -16,3 +16,15 @@ Feature: Traditional registration
     Then I should be on the users page
     And I should see "Barney Stinson"
   
+  Scenario: Authentication
+    Given a registered user exists with login: "barney", password: "awesome"
+    And I am on the homepage
+    
+    When I follow "Login"
+    And I fill in "Login" with "barney"
+    And I fill in "Password" with "awesome"
+    And I press "Login"
+    
+    Then I should be on the user page for "barney"
+    And I should be logged in
+  

@@ -1,7 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
     @user_session = UserSession.new
-    @providers = Reflex::OAuthServer.get_providers # This is slow!
   end
   
   def create    
