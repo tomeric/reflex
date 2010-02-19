@@ -9,12 +9,9 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'authlogic'
   config.gem 'cucumber'
-  config.gem 'test-unit',        :version => '= 1.2.3', :lib => false
   config.gem 'cucumber-rails',   :lib => false
   config.gem 'database_cleaner', :lib => false
   config.gem 'capybara',         :lib => false
-  config.gem 'rspec',            :lib => false
-  config.gem 'rspec-rails',      :lib => false
   config.time_zone = 'UTC'
   config.cache_classes = true
   config.whiny_nils = true
