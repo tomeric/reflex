@@ -2,7 +2,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'spec_hel
 
 describe Reflex::Authlogic::Connection do
   before(:each) do
-    @connection = Reflex::Authlogic::Connection.new
+    @authorizable = Authorizable.create
+    @connection   = Reflex::Authlogic::Connection.new(:provider => 'Twitter', :authorizable => @authorizable)
   end
   
   it "should generate a UUID before validation on create" do
@@ -12,11 +13,10 @@ describe Reflex::Authlogic::Connection do
   end
   
   it "should not update a UUID on update validations" do
-    @connection.valid?
-    @connection.save(false)
+    @connection.save
     
     lambda {
-      @connection.valid?
+      @connection.save
     }.should_not change(@connection, :uuid)
   end
 end

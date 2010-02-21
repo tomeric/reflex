@@ -6,6 +6,10 @@ ActiveRecord::Schema.define :version => 0 do
     t.string  :uuid,              :null => false
     t.timestamps
   end
+  
+  create_table :authorizables do |t|
+    t.timestamps
+  end
 
   add_index :reflex_connections, [:authorizable_type, :authorizable_id]
 end

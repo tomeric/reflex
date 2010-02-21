@@ -17,6 +17,9 @@ ActiveRecord::Base.silence do
   load File.join(File.dirname(__FILE__), 'schema.rb')
 end
 
+class Authorizable < ActiveRecord::Base
+end
+
 Spec::Runner.configure do |config|
   config.mock_with :mocha
 end
