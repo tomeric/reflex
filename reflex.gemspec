@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tom-Eric Gerritsen"]
-  s.date = %q{2010-02-21}
+  s.date = %q{2010-02-22}
   s.description = %q{Reflex is a gem that allows you to connect your application to the React Social API}
   s.email = %q{tomeric@i76.nl}
   s.extra_rdoc_files = [
@@ -105,7 +105,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/i76/reflex}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Reflex connects your app to the React Social API}
   s.test_files = [
     "spec/reflex/authlogic/connection_spec.rb",
@@ -123,17 +123,35 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<authlogic>, [">= 2.1.3"])
+      s.add_runtime_dependency(%q<uuidtools>, [">= 2.1.1"])
+      s.add_development_dependency(%q<cucumber>, [">= 0.6.2"])
+      s.add_development_dependency(%q<cucumber-rails>, [">= 0.2.4"])
+      s.add_development_dependency(%q<capybara>, [">= 0.3.0"])
+      s.add_development_dependency(%q<database_cleaner>, [">= 0.4.3"])
       s.add_development_dependency(%q<mocha>, [">= 0.9.8"])
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<fakeweb>, [">= 1.2.8"])
       s.add_development_dependency(%q<mime-types>, [">= 1.16"])
     else
+      s.add_dependency(%q<authlogic>, [">= 2.1.3"])
+      s.add_dependency(%q<uuidtools>, [">= 2.1.1"])
+      s.add_dependency(%q<cucumber>, [">= 0.6.2"])
+      s.add_dependency(%q<cucumber-rails>, [">= 0.2.4"])
+      s.add_dependency(%q<capybara>, [">= 0.3.0"])
+      s.add_dependency(%q<database_cleaner>, [">= 0.4.3"])
       s.add_dependency(%q<mocha>, [">= 0.9.8"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<fakeweb>, [">= 1.2.8"])
       s.add_dependency(%q<mime-types>, [">= 1.16"])
     end
   else
+    s.add_dependency(%q<authlogic>, [">= 2.1.3"])
+    s.add_dependency(%q<uuidtools>, [">= 2.1.1"])
+    s.add_dependency(%q<cucumber>, [">= 0.6.2"])
+    s.add_dependency(%q<cucumber-rails>, [">= 0.2.4"])
+    s.add_dependency(%q<capybara>, [">= 0.3.0"])
+    s.add_dependency(%q<database_cleaner>, [">= 0.4.3"])
     s.add_dependency(%q<mocha>, [">= 0.9.8"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<fakeweb>, [">= 1.2.8"])
