@@ -6,8 +6,11 @@ Reflex is a gem that allows you to connect your application to the React Social 
 
 === 1. Install Authlogic and setup your application
 
-* Authlogic: http://github.com/binarylogic/authlogic
-* Authlogic Example: http://github.com/binarylogic/authlogic_example
+Install authlogic (http://github.com/binarylogic/authlogic) in your rails application, and
+set it up according to the authlogic docs (http://rdoc.info/projects/binarylogic/authlogic).
+
+Take a look at the authlogic example app (http://github.com/binarylogic/authlogic_example), or
+use it as a basis, if you get stuck.
 
 === 2. Install Reflex
 
@@ -29,7 +32,7 @@ And install them:
 
   $ rake gems:install
 
-==== Rails 3.0
+==== Rails 3.0 (untested)
 
 Add the dependencies to your Gemfile
 
@@ -41,7 +44,20 @@ And install them:
   $ bundle install
   $ bundle pack
 
-=== 3. Configure the reflex gem
+=== 3. Generate the reflex_connections migration
+
+Now that we have the reflex gem installed, we need to generate a migration that connects our users to
+a reflex provider:
+
+==== Rails 2.3
+  
+  $ script/generate reflex_connections_migration
+
+==== Rails 3.0 (untested)
+
+  $ rails generate reflex_connections_migration
+
+=== 4. Configure the reflex gem
 
 Create a reflex configuration file:
 
@@ -56,7 +72,7 @@ Create a reflex configuration file:
     key: production_key
     secret: production_secret
   
-=== 3. Make sure you save your objects properly
+=== 5. Make sure you save your objects properly
 
 Save your session objects with a block. Why? Because we need to redirect the user to their login provider so that they can authenticate. When we do this, we don't want to execute that block of code, because if we do, we will get a DoubleRender error. Using a block allows us to skip that entire block and send the user along their way if they choose to authenticate via React's OAuth Server.
 
@@ -85,7 +101,7 @@ When creating new users, react_profile is set if available. In order to make use
     end
   end
 
-=== 4. Add providers to your login form
+=== 6. Add providers to your login form
 
 Add providers to your login form:
 
