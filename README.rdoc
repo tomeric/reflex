@@ -1,6 +1,6 @@
 = reflex
 
-Reflex is a gem that allows you to connect your application to the React Social API
+Reflex is a gem that allows you to connect your application to the React Social API.
 
 == Install / Usage
 
@@ -42,7 +42,7 @@ Add the dependencies to your Gemfile
 And install them:
 
   $ bundle install
-  $ bundle pack
+  $ bundle lock
 
 === 3. Generate the reflex_connections migration
 
