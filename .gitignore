@@ -18,6 +18,7 @@ coverage
 rdoc
 pkg
 rerun.txt
+test.sqlite3
 
 ## PROJECT::SPECIFIC
 reflex.yml

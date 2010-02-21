@@ -6,8 +6,10 @@ require 'reflex/oauth_server'
 require 'reflex/system'
 
 if defined?(Authlogic)
-  require 'reflex/authlogic/session'
+  require 'uuidtools'
   require 'reflex/authlogic/acts_as_authentic'
+  require 'reflex/authlogic/connection'
+  require 'reflex/authlogic/session'
 end
 
 $LOAD_PATH.shift

@@ -1,12 +1,21 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
+require 'authlogic'
 require 'reflex'
 require 'spec'
 require 'spec/autorun'
 require 'mocha'
 require 'fakeweb'
 require 'mime/types'
+
+TEST_DATABASE_FILE = File.join(File.dirname(__FILE__), '..', 'test.sqlite3')
+File.unlink(TEST_DATABASE_FILE) if File.exist?(TEST_DATABASE_FILE)
+ActiveRecord::Base.establish_connection("adapter" => "sqlite3", "database" => TEST_DATABASE_FILE)
+ActiveRecord::Base.silence do
+  ActiveRecord::Migration.verbose = false
+  load File.join(File.dirname(__FILE__), 'schema.rb')
+end
 
 Spec::Runner.configure do |config|
   config.mock_with :mocha
