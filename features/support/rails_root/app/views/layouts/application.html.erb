@@ -6,13 +6,18 @@
   <body>
     <nav>
       <% if current_user %>
-        <%= link_to 'My Profile', current_user %>
+        <%= link_to 'My Profile', current_user %> |
         <%= link_to 'Logout', logout_path %>
       <% else %>
         <%= link_to 'Login', login_path %> |
         <%= link_to 'Register', new_user_path %>
       <% end %>
     </nav>
+    
+    <% flash.each do |type, message| %>
+      <p><%= type.upcase %>: <%= message %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>

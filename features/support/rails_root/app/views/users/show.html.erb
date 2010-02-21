@@ -5,3 +5,7 @@
   <dt>Name</dt>
   <dd><%= @user.name %></dd>
 </dl>
+
+<% if current_user == @user %>
+  <p><%= link_to "Edit my profile", edit_user_path(@user) %>
+<% end %>

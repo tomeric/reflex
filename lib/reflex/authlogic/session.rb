@@ -62,13 +62,13 @@ module Reflex
         else
           # User is not yet known on React's side, so create it:
           react_profile = Reflex::OAuthServer.session_get_profile(react_oauth_session)
-          self.attempted_record = klass.create_for_react(react_profile) 
+          
+          # Create a user record with a connection to this provider
+          self.attempted_record, connection = klass.create_for_react(react_provider, react_profile) 
           
           if !attempted_record.new_record?
-            react_user_id = attempted_record.id # react_user_id
-      
             # Set the user id on react's side:
-            Reflex::OAuthServer.token_set_user_id(react_user_id, react_oauth_session)
+            Reflex::OAuthServer.token_set_user_id(connection.uuid, react_oauth_session)
           else
             # Something must have gone wrong
             errors.add_to_base(:react_auth_failed) 

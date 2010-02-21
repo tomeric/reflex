@@ -35,3 +35,16 @@ Feature: Social authentication
     
     When I follow "My Profile"
     Then I should see "Marshall Eriksen"
+  
+  Scenario: Updating my profile
+    Given I login as the "Twitter" user "Marshall Eriksen"
+    And I am on the homepage
+    
+    When I follow "My Profile"
+    And I follow "Edit my profile"
+    And I fill in "Name" with "Big Fudge"
+    And I press "Save"
+    Then I should see "Succesfully updated user"
+    
+    When I follow "My Profile"
+    Then I should see "Big Fudge"

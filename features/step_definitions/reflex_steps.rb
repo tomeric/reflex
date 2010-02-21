@@ -1,5 +1,24 @@
 Given /^a "([^\"]*)" user exists$/ do |provider|
-  User.create!(:name => 'Marshall Eriksen', :creating_for_react => true)
+  Given "a \"#{provider}\" user exists with name: \"Marshall Eriksen\""
+end
+
+Given /^a "([^\"]*)" user exists with name: "([^\"]*)"$/ do |provider, name|
+  record = User.new(:name => name)
+  record.reflex_connections.build(:provider => 'Twitter')
+  record.save!
+end
+
+Given /^I login as the "([^\"]*)" user "([^\"]*)"$/ do |provider, name|
+  Given "a \"#{provider}\" user exists with name: \"#{name}\""
+  And "I am on the login page"
+  
+  Given "a token request is expected"
+  When "I press \"Twitter\""
+  
+  Given "a token access is expected for a registered user"
+  When "I press \"Allow\""
+  
+  Then "I should be logged in"
 end
 
 Given /^([0-9]+) users? should exist$/ do |count|
@@ -23,10 +42,12 @@ Given /^a token access is expected for an unregistered user$/ do
 end
 
 Given /^a token access is expected for a registered user$/ do
+  application_user_id = User.last.reflex_connections.first.uuid
+
   Reflex::OAuthServer.expects(:token_access).returns({ 
     'connectedWithProvider' => @provider,
     'reactOAuthSession'     => 'FAKE_REACT_OAUTH_SESSION',
-    'applicationUserId'     => User.last.id
+    'applicationUserId'     => application_user_id
   })
 end
 

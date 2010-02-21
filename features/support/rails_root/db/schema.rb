@@ -9,14 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 2) do
+
+  create_table "reflex_connections", :force => true do |t|
+    t.string   "provider",          :null => false
+    t.string   "authorizable_type", :null => false
+    t.integer  "authorizable_id",   :null => false
+    t.string   "uuid",              :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "reflex_connections", ["authorizable_type", "authorizable_id"], :name => "index_reflex_connections_on_authorizable_type_and_authorizable_id", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "name",              :null => true
+    t.string   "name",              :null => false
     t.string   "login",             :null => true
     t.string   "crypted_password",  :null => true
     t.string   "password_salt",     :null => true
-    t.string   "persistence_token", :null => true
+    t.string   "persistence_token", :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

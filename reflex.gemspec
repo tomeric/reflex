@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tom-Eric Gerritsen"]
-  s.date = %q{2010-02-19}
+  s.date = %q{2010-02-21}
   s.description = %q{Reflex is a gem that allows you to connect your application to the React Social API}
   s.email = %q{tomeric@i76.nl}
   s.extra_rdoc_files = [
@@ -26,8 +26,12 @@ Gem::Specification.new do |s|
      "cucumber.yml",
      "features/connect_to_provider.feature",
      "features/social_authentication.feature",
+     "features/step_definitions/reflex_steps.rb",
      "features/step_definitions/web_steps.rb",
      "features/support/env.rb",
+     "features/support/mocha.rb",
+     "features/support/mock_controller.rb",
+     "features/support/mock_controller/oauth_authorize.html.erb",
      "features/support/paths.rb",
      "features/support/rails_root/.gitignore",
      "features/support/rails_root/Rakefile",
@@ -59,18 +63,23 @@ Gem::Specification.new do |s|
      "features/support/rails_root/config/initializers/session_store.rb",
      "features/support/rails_root/config/routes.rb",
      "features/support/rails_root/db/migrate/001_create_users.rb",
+     "features/support/rails_root/db/migrate/002_create_reflex_connections.rb",
      "features/support/rails_root/db/schema.rb",
+     "features/support/rails_root/vendor/plugins/reflex/rails/init.rb",
      "features/traditional_registration_and_authentication.feature",
      "init.rb",
      "lib/reflex.rb",
      "lib/reflex/authlogic/acts_as_authentic.rb",
      "lib/reflex/authlogic/callback_filter.rb",
+     "lib/reflex/authlogic/connection.rb",
      "lib/reflex/authlogic/session.rb",
      "lib/reflex/base.rb",
      "lib/reflex/configuration.rb",
      "lib/reflex/oauth_server.rb",
      "lib/reflex/system.rb",
      "rails/init.rb",
+     "rails_generators/reflex_connection_migration/reflex_connection_migration_generator.rb",
+     "rails_generators/reflex_connection_migration/templates/create_reflex_connections.rb",
      "reflex.gemspec",
      "spec/fakeweb/OAuthServer.getProviders",
      "spec/fakeweb/OAuthServer.sessionGetProfile",
@@ -83,25 +92,29 @@ Gem::Specification.new do |s|
      "spec/fakeweb/System.listMethods",
      "spec/fakeweb/System.methodDescription",
      "spec/fakeweb/System.methodSignature",
+     "spec/reflex/authlogic/connection_spec.rb",
      "spec/reflex/base_spec.rb",
      "spec/reflex/configuration_spec.rb",
      "spec/reflex/oauth_server_spec.rb",
      "spec/reflex/system_spec.rb",
      "spec/reflex_spec.rb",
+     "spec/schema.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/i76/reflex}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Reflex connects your app to the React Social API}
   s.test_files = [
-    "spec/reflex/base_spec.rb",
+    "spec/reflex/authlogic/connection_spec.rb",
+     "spec/reflex/base_spec.rb",
      "spec/reflex/configuration_spec.rb",
      "spec/reflex/oauth_server_spec.rb",
      "spec/reflex/system_spec.rb",
      "spec/reflex_spec.rb",
+     "spec/schema.rb",
      "spec/spec_helper.rb"
   ]
 

@@ -23,25 +23,36 @@ module Reflex
             base.cattr_accessor "original_#{validate_options}"
             base.send("original_#{validate_options}=", current_options.dup)
             
-            new_options = current_options.merge(:if => nil, :unless => :creating_for_react)
+            new_options = current_options.merge(:if => nil, :unless => :saving_for_react?)
             
             base.send("#{validate_options}=", new_options)
           end
 
-          base.class_eval <<-EOD
-            attr_accessor :creating_for_react
+          base.class_eval do
+            has_many :reflex_connections, :as => :authorizable, :autosave => true,
+                     :class_name => 'Reflex::Authlogic::Connection'
+
+            def saving_for_react?
+              reflex_connections.present?
+            end
 
             def self.find_by_react_user_id(react_id)
-              find_by_id(react_id)
+              connection = Reflex::Authlogic::Connection.find_by_authorizable_type_and_uuid(class_name, react_id)
+              connection && connection.authorizable
             end
             
-            def self.create_for_react(react_profile)
-              record = new(:creating_for_react => true)
-              record.react_profile = react_profile if record.respond_to?(:react_profile=)
+            def self.create_for_react(provider, react_profile = nil)
+              record = new()
+              connection = record.reflex_connections.build(:provider => provider)
+              
+              if react_profile
+                record.react_profile = react_profile if record.respond_to?(:react_profile=)
+              end
+              
               record.save_without_session_maintenance
-              record
+              [record, connection]
             end
-          EOD
+          end
         end
       end
     end
