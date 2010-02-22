@@ -1,6 +1,7 @@
 require 'reflex/authlogic/connection'
 require 'reflex/authlogic/account'
-  
+require 'reflex/authlogic/connectable'
+
 module Reflex
   module Authlogic
     module ActsAsAuthentic
@@ -8,6 +9,7 @@ module Reflex
       def self.included(base)
         base.class_eval do
           add_acts_as_authentic_module(Reflex::Authlogic::Account, :prepend)
+          add_acts_as_authentic_module(Reflex::Authlogic::Connectable, :prepend)
         end
       end
     end

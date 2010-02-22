@@ -26,7 +26,7 @@ Given /^([0-9]+) users? should exist$/ do |count|
 end
 
 Given /^a token request is expected$/ do
-  @provider = 'Twitter'
+  @provider ||= 'Twitter'
 
   Reflex::OAuthServer.expects(:token_request).with(@provider).returns({ 
     'redirectUrl'       => 'https://twitter.com/fake_controller/oauth/authorize',
@@ -35,6 +35,8 @@ Given /^a token request is expected$/ do
 end
 
 Given /^a token access is expected for an unregistered user$/ do
+  @provider ||= 'Twitter'
+
   Reflex::OAuthServer.expects(:token_access).returns({ 
     'connectedWithProvider' => @provider,
     'reactOAuthSession'     => 'FAKE_REACT_OAUTH_SESSION'
@@ -42,6 +44,7 @@ Given /^a token access is expected for an unregistered user$/ do
 end
 
 Given /^a token access is expected for a registered user$/ do
+  @provider ||= 'Twitter'
   application_user_id = User.last.reflex_connections.first.uuid
 
   Reflex::OAuthServer.expects(:token_access).returns({ 
@@ -60,6 +63,8 @@ Given /^a session profile fetched is expected$/ do
 end
 
 Given /^a user id is set for the available token$/ do
+  @provider ||= 'Twitter'
+
   Reflex::OAuthServer.expects(:token_set_user_id).returns({
     'applicationUserId'     => 1,
     'connectedWithProvider' => @provider,
