@@ -8,7 +8,6 @@ require 'reflex/system'
 if defined?(Authlogic)
   require 'uuidtools'
   require 'reflex/authlogic/acts_as_authentic'
-  require 'reflex/authlogic/connection'
   require 'reflex/authlogic/session'
 end
 
