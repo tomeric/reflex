@@ -30,8 +30,8 @@ Gem::Specification.new do |s|
      "features/step_definitions/web_steps.rb",
      "features/support/env.rb",
      "features/support/mocha.rb",
-     "features/support/mock_controller.rb",
      "features/support/mock_controller/oauth_authorize.html.erb",
+     "features/support/mocks.rb",
      "features/support/paths.rb",
      "features/support/rails_root/.gitignore",
      "features/support/rails_root/Rakefile",
@@ -69,8 +69,11 @@ Gem::Specification.new do |s|
      "features/traditional_registration_and_authentication.feature",
      "init.rb",
      "lib/reflex.rb",
+     "lib/reflex/authlogic/account.rb",
      "lib/reflex/authlogic/acts_as_authentic.rb",
+     "lib/reflex/authlogic/authentication_process.rb",
      "lib/reflex/authlogic/callback_filter.rb",
+     "lib/reflex/authlogic/connectable.rb",
      "lib/reflex/authlogic/connection.rb",
      "lib/reflex/authlogic/session.rb",
      "lib/reflex/base.rb",
@@ -105,7 +108,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/i76/reflex}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Reflex connects your app to the React Social API}
   s.test_files = [
     "spec/reflex/authlogic/connection_spec.rb",
