@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
+require 'rubygems' unless RUBY_VERSION >= "1.9"
 require 'authlogic'
 require 'reflex'
 require 'spec'
