@@ -6,6 +6,15 @@
   <dd><%= @user.name %></dd>
 </dl>
 
+<% if @user.reflex_connections.present? %>
+  <h2>Connected providers:</h2>
+  <ul>
+    <% @user.reflex_connections.each do |connection| %>
+      <li><%= connection.provider %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if current_user == @user %>
   <p><%= link_to "Edit my profile", edit_user_path(@user) %>
 <% end %>

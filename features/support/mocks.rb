@@ -15,3 +15,7 @@ ActionController::Routing::Routes.draw do |map|
     fake.oauth_authorize 'fake_controller/oauth/authorize', :action => 'oauth_authorize'
   end
 end
+
+Before do
+  Reflex::OAuthServer.stubs(:get_providers).returns(['Twitter', 'Facebook'])
+end

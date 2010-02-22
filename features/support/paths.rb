@@ -20,6 +20,9 @@ module NavigationHelpers
     when /the login page/
       login_path
     
+    when /my profile/
+      user_path(User.last)
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

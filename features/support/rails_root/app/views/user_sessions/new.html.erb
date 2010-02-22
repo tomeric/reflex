@@ -16,7 +16,8 @@
   </div>
   <div class="right">
     <h2>Or log in via:</h2>
-    <%= f.submit 'Twitter',  :name => "react_provider" %><br>
-    <%= f.submit 'Facebook', :name => "react_provider" %>
+    <% Reflex::OAuthServer.get_providers.each do |provider| %>
+      <%= f.submit provider, :name => "react_provider" %>
+    <% end %>
   </div>
 <% end %>

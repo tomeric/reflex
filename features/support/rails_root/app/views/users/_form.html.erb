@@ -19,5 +19,13 @@
     <%= f.password_field :password_confirmation %>
   </p>
   
+  <p>
+    <%= f.label :connect_to_provider %>
+    <br>
+    <% Reflex::OAuthServer.get_providers.each do |provider| %>
+      <%= f.submit provider, :name => "react_provider" %>
+    <% end %>
+  </p>
+  
   <p><%= f.submit "Save" %></p>
 <% end %>
