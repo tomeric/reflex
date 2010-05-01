@@ -14,11 +14,6 @@ use it as a basis, if you get stuck.
 
 === 2. Install Reflex
 
-*WARNING!* Because the reflex gem is not yet available, the notes below are incorrect. For now, 
-simply install reflex as a rails plugin and _don't_ add it in your environment.rb or Gemfile:
-
-  $ script/plugin install git@github.com:i76/reflex.git
-
 Add the gem dependencies in your config:
 
 ==== Rails 2.3
@@ -42,7 +37,6 @@ Add the dependencies to your Gemfile
 And install them:
 
   $ bundle install
-  $ bundle lock
 
 === 3. Generate the reflex_connections migration
 
@@ -178,6 +172,8 @@ The reflex gem is far from finished. Here are some of the upcoming features:
 1. Easily access the React API — If a user connected to, for example twitter,
    then it should be a matter of calling:
    `@user.twitter.update_status("I've connected my Twitter profile")`
+
+2. Better support for connecting a previously connected user
 
 == Note on Patches/Pull Requests
  
