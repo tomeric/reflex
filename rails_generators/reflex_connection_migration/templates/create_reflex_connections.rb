@@ -8,7 +8,7 @@ class CreateReflexConnections < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :reflex_connections, [:authorizable_type, :authorizable_id], :unique => false
+    add_index :reflex_connections, [:authorizable_type, :authorizable_id], :unique => false, :name => 'reflex_connection_authorizable'
   end
   
   def self.down
