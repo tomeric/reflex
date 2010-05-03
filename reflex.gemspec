@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{reflex}
-  s.version = "0.0.1"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tom-Eric Gerritsen"]
-  s.date = %q{2010-02-22}
+  s.date = %q{2010-05-03}
   s.description = %q{Reflex is a gem that allows you to connect your application to the React Social API}
   s.email = %q{tomeric@i76.nl}
   s.extra_rdoc_files = [
