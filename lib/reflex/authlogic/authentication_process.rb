@@ -16,8 +16,9 @@ module Reflex
         reflex_controller.redirect_to(result['redirectUrl'])
       end
 
+        
       def react_provider
-       reflex_controller.params && reflex_controller.params['react_provider'] 
+        reflex_controller.params && reflex_controller.params['react_provider'] 
       end
 
       def react_oauth_session

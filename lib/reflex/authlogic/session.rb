@@ -25,6 +25,15 @@ module Reflex
 
         private
 
+        def react_provider
+          reflex_controller.params && reflex_controller.params['react_provider'] 
+        end
+        
+        # If we are already logged in, we are not going to authenticate again!
+        def authenticating_via_oauth_server?
+          attempted_record.nil? && errors.empty? && super
+        end
+
         def authenticate_oauth_session(allow_retry = true)
           # Request the React Session
           oauth_session  = Reflex::OAuthServer.token_access(reflex_controller.params)
@@ -46,10 +55,10 @@ module Reflex
           else
             # User is not yet known on React's side, so create it:
             react_profile = Reflex::OAuthServer.session_get_profile(react_oauth_session)
-      
+
             # Create a user record with a connection to this provider
             self.attempted_record, connection = klass.create_for_react(react_provider, react_profile) 
-      
+
             if !attempted_record.new_record?
               # Set the user id on react's side:
               Reflex::OAuthServer.token_set_user_id(connection.uuid, react_oauth_session)

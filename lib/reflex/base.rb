@@ -3,7 +3,7 @@ require 'xmlrpc/client'
 # unfortunately react's oauth server has <nil />'s, which the ruby XMLRPC
 # library does not enable by default, because it is an XML-RPC extension:
 # http://ontosys.com/xml-rpc/extensions.php
-old_verbose, $VERBOSE = $VERBOSE, nil  
+old_verbose, $VERBOSE = $VERBOSE, nil
 begin
   XMLRPC::Config::ENABLE_NIL_PARSER = true
   XMLRPC::Config::ENABLE_NIL_CREATE = true

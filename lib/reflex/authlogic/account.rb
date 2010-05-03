@@ -10,11 +10,14 @@ module Reflex
         
         # Overwrite authlogic validation options so they are skipped when saving a react account:
         [:validates_uniqueness_of_login_field_options,
+         :validates_length_of_login_field_options,
+         :validates_format_of_login_field_options,
+         :validates_uniqueness_of_email_field_options,
+         :validates_length_of_email_field_options,
+         :validates_format_of_email_field_options,
          :validates_length_of_password_field_options,
          :validates_confirmation_of_password_field_options,
-         :validates_length_of_password_confirmation_field_options,
-         :validates_length_of_login_field_options,
-         :validates_format_of_login_field_options].each do |validate_options|
+         :validates_length_of_password_confirmation_field_options].each do |validate_options|
           current_options = base.send(validate_options)
           
           base.cattr_accessor "original_#{validate_options}"
@@ -42,11 +45,10 @@ module Reflex
           record = new()
           connection = record.reflex_connections.build(:provider => provider)
           
-          if react_profile
-            record.react_profile = react_profile if record.respond_to?(:react_profile=)
-          end
-          
+          record.react_profile     = react_profile                 if record.respond_to?(:react_profile=) 
+          record.persistence_token = ::Authlogic::Random.hex_token if record.respond_to?(:persistence_token=)
           record.save_without_session_maintenance
+
           [record, connection]
         end        
       end

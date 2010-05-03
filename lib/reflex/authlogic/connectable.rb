@@ -35,6 +35,10 @@ module Reflex
         end
 
         private
+        
+        def authenticating_via_oauth_server?
+          super
+        end        
       
         def connect_to_provider!
           if redirecting_to_oauth_server?
